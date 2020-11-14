@@ -1,0 +1,33 @@
+.com_anm22_wb_slideshow_com_anm22_wb_editor_slideshowV2{
+  box-sizing: border-box;
+  font-size: 0;
+}
+
+.com_anm22_wb_slideshow_com_anm22_wb_editor_slideshowV2 .slideshow-arrow{
+  cursor: pointer;
+  width: 10%;
+  height: 100%;
+  display: inline-block;
+  margin: 0;
+}
+
+.com_anm22_wb_slideshow_com_anm22_wb_editor_slideshowV2 .slideshow-slider-scroll{
+    position:relative;
+    overflow: auto;
+    width: 80%;
+    height: 100%;
+    display: inline-block;
+}
+
+.com_anm22_wb_slideshow_com_anm22_wb_editor_slideshowV2 .slideshow-slider-scroll .slideshow-slider-extended-container{
+   overflow: auto;
+   height: 100%;
+}
+
+.com_anm22_wb_slideshow_com_anm22_wb_editor_slideshowV2 .slideshow-slider-scroll .slideshow-slider-extended-container .slideshow-slide{
+  height: 100%;
+  display: inline-block;
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

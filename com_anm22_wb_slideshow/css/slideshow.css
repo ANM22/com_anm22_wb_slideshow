@@ -1,0 +1,15 @@
+.slideshow_sp_s1 {
+	z-index:1;
+}
+
+.slideshow_sp_s2 {
+	z-index:0;
+}
+
+.slideshow_sp_s3 {
+	z-index:-1;
+}
+
+.slideshow_sp_off{
+	display:none;
+}
