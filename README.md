@@ -9,6 +9,7 @@ com_anm22_wb_slideshow is slideshow plugin of ANM22 WebBase CMS.
 ## System Requirements
 *	WebBase engine v7
 *	WebBase editor v2.6
+*	Plugin com_anm22_wb_gallery v1.1, v2, v3 [GitHub](https://github.com/ANM22/com_anm22_wb_gallery)
 
 Download WebBase: [WebBase on GitHub](https://github.com/ANM22/WebBase)
 
