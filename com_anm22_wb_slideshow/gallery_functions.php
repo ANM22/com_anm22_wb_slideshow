@@ -15,7 +15,6 @@ class anm22_wb_galleries {
     }
 
     function swapGalleries($indexOne, $indexTwo) {
-        $tempGallery;
         $tempGallery = $this->galleries[$indexOne];
         $this->galleries[$indexOne] = $this->galleries[$indexTwo];
         $this->galleries[$indexTwo] = $tempGallery;
@@ -90,8 +89,7 @@ class anm22_wb_galleries {
     }
 
     function getGalleryById($galleryTs) {
-        $k;
-        $galleryToBeReturned;
+        $galleryToBeReturned = null;
         for ($k = 0; $k < $this->getGalleriesCount(); $k++) {
             if ($this->galleries[$k]->getCreationDate() == $galleryTs) {
                 $galleryToBeReturned = $this->galleries[$k];
@@ -102,8 +100,7 @@ class anm22_wb_galleries {
     }
 
     function getGalleryByTitle($galleryTitle) {
-        $k;
-        $galleryToBeReturned;
+        $galleryToBeReturned = null;
         for ($k = 0; $k < $this->getGalleriesCount(); $k++) {
             if ($this->galleries[$k]->getTitle() == $galleryTitle) {
                 $galleryToBeReturned = $this->galleries[$k];
@@ -166,7 +163,7 @@ class anm22_wb_galleries {
     }
 
     function editImageContainingGallery($imageId, $oldGalleryId, $newGalleryId) {
-        $imageToSwitch;
+        $imageToSwitch = null;
         for ($k = 0; $k < $this->getGalleriesCount(); $k++) {
             if ($this->galleries[$k]->getCreationDate() == $oldGalleryId) {
                 $imageToSwitch = $this->galleries[$k]->getImageById($imageId);
@@ -305,7 +302,6 @@ class anm22_wb_gallery {
         $imagesOrderedByDate = array();
         $tmpArray = array();
         $tmpArray = $this->images;
-        $tmpElement;
         $elementCount = count($tmpArray);
         for ($i = 0; $i < $elementCount; $i++) {
             $tmpElement = $tmpArray[0];

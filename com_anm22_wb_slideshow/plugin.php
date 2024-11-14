@@ -1,16 +1,16 @@
 <?php
-/*
- * Author: ANM22
- * Last modified: 15 Nov 2020 - GMT +1 00:29
+
+/**
+ * Slideshow plugins for ANM22 WebBase CMS.
  *
- * ANM22 Andrea Menghi all rights reserved
- *
+ * @author Andrea Menghi <andrea.menghi@anm22.it>
  */
 
-/*
- * SLIDESHOW
+/**
+ * Slideshow plugin basic
  */
-class com_anm22_wb_editor_slideshow extends com_anm22_wb_editor_page_element {
+class com_anm22_wb_editor_slideshow extends com_anm22_wb_editor_page_element
+{
 
     var $elementClass = "com_anm22_wb_editor_slideshow";
     var $elementPlugin = "com_anm22_wb_slideshow";
@@ -20,13 +20,41 @@ class com_anm22_wb_editor_slideshow extends com_anm22_wb_editor_page_element {
     var $milliseconds;
     var $cssClass;
 
-    function importXMLdoJob($xml) {
+    /**
+     * @deprecated since editor 3.0
+     * 
+     * Method to init the element.
+     * 
+     * @param SimpleXMLElement $xml Element data
+     * @return void
+     */
+    function importXMLdoJob($xml)
+    {
         $this->imageNumber = intval($xml->imageNumber);
         $this->milliseconds = intval($xml->milliseconds);
         $this->cssClass = $xml->cssClass;
     }
 
-    function show() {
+    /**
+     * Method to init the element.
+     * 
+     * @param mixed[] $data Element data
+     * @return void
+     */
+    public function initData($data)
+    {
+        $this->imageNumber = intval($data['imageNumber']);
+        $this->milliseconds = intval($data['milliseconds']);
+        $this->cssClass = htmlspecialchars_decode($data['cssClass']);
+    }
+
+    /**
+     * Render the page element
+     * 
+     * @return void
+     */
+    function show()
+    {
         $src = $this->page->getHomeFolderRelativePHPURL() . "ANM22WebBase/upload/" . $this->page->getPageLanguage() . "_" . $this->page->getPageLink() . "_" . $this->id;
         ?>
         <link href="<?= $this->page->getHomeFolderRelativePHPURL() ?>ANM22WebBase/website/plugins/<?= $this->elementPlugin ?>/css/slideshow.css" type="text/css" rel="stylesheet" />
@@ -86,9 +114,10 @@ class com_anm22_wb_editor_slideshow extends com_anm22_wb_editor_page_element {
 }
 
 /**
- * Slideshow V2, con gallery
+ * Slideshow plugin connected to the WebBase gallery engine
  */
-class com_anm22_wb_editor_slideshowV2 extends com_anm22_wb_editor_page_element {
+class com_anm22_wb_editor_slideshowV2 extends com_anm22_wb_editor_page_element
+{
 
     var $elementClass = "com_anm22_wb_editor_slideshowV2";
     var $elementPlugin = "com_anm22_wb_slideshow";
@@ -106,6 +135,14 @@ class com_anm22_wb_editor_slideshowV2 extends com_anm22_wb_editor_page_element {
     private $ratioBig;
     private $cssClass;
 
+    /**
+     * @deprecated since editor 3.0
+     * 
+     * Method to init the element.
+     * 
+     * @param SimpleXMLElement $xml Element data
+     * @return void
+     */
     function importXMLdoJob($xml) {
         $this->galleryId = intval($xml->galleryId);
         $this->animDuration = intval($xml->animDuration);
@@ -120,7 +157,36 @@ class com_anm22_wb_editor_slideshowV2 extends com_anm22_wb_editor_page_element {
         $this->cssClass = $xml->cssClass;
     }
 
-    function show() {
+    /**
+     * Method to init the element.
+     * 
+     * @param mixed[] $data Element data
+     * @return void
+     */
+    public function initData($data)
+    {
+        $this->galleryId = intval($data['galleryId']);
+        $this->animDuration = intval($data['animDuration']);
+        $this->slideshowType = $data['slideshowType'];
+        $this->paddingDesktop = intval($data['paddingDesktop']);
+        $this->paddingMobile = intval($data['paddingMobile']);
+        $this->widthDesktop = intval($data['widthDesktop']);
+        $this->widthMobile = intval($data['widthMobile']);
+        $this->ratio = floatval($data['ratio']);
+        $this->ratioMini = floatval($data['ratioMini']);
+        $this->ratioBig = floatval($data['ratioBig']);
+        if (isset($data['cssClass']) && !is_array($data['cssClass'])) {
+            $this->cssClass = htmlspecialchars_decode($data['cssClass'] ?? '');
+        }
+    }
+
+    /**
+     * Render the page element
+     * 
+     * @return void
+     */
+    function show()
+    {
         /* Ricerca id news tramite parametro get se non precedentemente indicati */
         if ($this->galleryId == 0) {
             if (intval($this->page->getVariables['gId']) > 0) {
@@ -151,16 +217,16 @@ class com_anm22_wb_editor_slideshowV2 extends com_anm22_wb_editor_page_element {
             }
             switch ($this->slideshowType) {
                 case "arrow":
-                    include "../ANM22WebBase/website/plugins/com_anm22_wb_slideshow/slideshows/arrow_slideshow.php";
+                    include __DIR__ . "/slideshows/arrow_slideshow.php";
                     break;
                 case "fading":
-                    include "../ANM22WebBase/website/plugins/com_anm22_wb_slideshow/slideshows/fading_slideshow.php";
+                    include __DIR__ . "/slideshows/fading_slideshow.php";
                     break;
                 case "big":
-                    include "../ANM22WebBase/website/plugins/com_anm22_wb_slideshow/slideshows/big_image_slideshow.php";
+                    include __DIR__ . "/slideshows/big_image_slideshow.php";
                     break;
                 default:
-                    include "../ANM22WebBase/website/plugins/com_anm22_wb_slideshow/slideshows/fading_slideshow.php";
+                    include __DIR__ . "/slideshows/fading_slideshow.php";
                     break;
             }
         }

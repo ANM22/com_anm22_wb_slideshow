@@ -1,11 +1,11 @@
 <?php
 /*Arrow Slideshow*/
-include_once $this->page->getHomeFolderRelativePHPURL()."ANM22WebBase/website/plugins/com_anm22_wb_slideshow/js/perfect_scrollbar.php";
+include_once $this->page->getHomeFolderRelativePHPURL() . "ANM22WebBase/website/plugins/com_anm22_wb_slideshow/js/perfect_scrollbar.php";
 /*Include CSS della scrollbar*/
-include_once $this->page->getHomeFolderRelativePHPURL()."ANM22WebBase/website/plugins/com_anm22_wb_slideshow/css/perfect_scrollbar.php";
+include_once $this->page->getHomeFolderRelativePHPURL() . "ANM22WebBase/website/plugins/com_anm22_wb_slideshow/css/perfect_scrollbar.php";
 /*Include CSS della slideshow*/
 ?>
-<link href="<?=$this->page->getHomeFolderRelativeHTMLURL()?>ANM22WebBase/website/plugins/<?=$this->elementPlugin?>/css/arrow-slideshow.css" type="text/css" rel="stylesheet" />
+<link href="<?= $this->page->getHomeFolderRelativeHTMLURL() ?>ANM22WebBase/website/plugins/<?= $this->elementPlugin ?>/css/arrow-slideshow.css" type="text/css" rel="stylesheet" />
 <script>
 $(function(){
   var slides = 0;
@@ -16,11 +16,11 @@ $(function(){
   var container = slider + " .slideshow-slider-extended-container";
   var slide = container + " .slideshow-slide";
   var mobileLimit = 900;
-  var desktopWidth = parseInt("<?=$this->widthDesktop?>");
-  var mobileWidth = parseInt("<?=$this->widthMobile?>");
-  var desktopPadding = parseFloat("<?=$this->paddingDesktop?>");
-  var mobilePadding = parseFloat("<?=$this->paddingMobile?>");
-  var ratio = parseFloat("<?=$this->ratio?>");
+  var desktopWidth = parseInt("<?= $this->widthDesktop ?>");
+  var mobileWidth = parseInt("<?= $this->widthMobile ?>");
+  var desktopPadding = parseFloat("<?= $this->paddingDesktop ?>");
+  var mobilePadding = parseFloat("<?= $this->paddingMobile ?>");
+  var ratio = parseFloat("<?= $this->ratio ?>");
   var slideDuration = 250;
   var tokenLast = false;
   var tokenEv = false;
@@ -127,7 +127,7 @@ $(function(){
   
 });
   </script>
-  <div class="<?=$this->elementPlugin."_".$this->elementClass?><? if($this->cssClass != ""){ ?><?=$this->cssClass?><?}?>">
+  <div class="<?= $this->elementPlugin . "_" . $this->elementClass ?><? if ($this->cssClass != "") { ?><?= $this->cssClass ?><? } ?>">
     <div class="slideshow-arrow slideshow-arrow-left">
     </div>
     <div class="slideshow-slider-scroll">
@@ -135,9 +135,9 @@ $(function(){
         <?php
         $gallery = $galleriesContainer->getGalleryById($this->galleryId)->getImagesArray();
         $i;
-        for($i = 1;$i<=count($gallery);$i++){
+        for ($i = 1; $i <= count($gallery); $i++) {
           ?>
-          <div style="background-image: url('<?=$this->page->getHomeFolderRelativeHTMLURL()?>img/<?=$gallery[$i-1]->getPermalink()?>_thumb/')" class="slideshow-slide slide-<?=$i?>">
+          <div style="background-image: url('<?= $this->page->getHomeFolderRelativeHTMLURL() ?>img/<?= $gallery[$i-1]->getPermalink() ?>_thumb/')" class="slideshow-slide slide-<?= $i ?>">
           </div>
           <?php
         }
